@@ -1,0 +1,77 @@
+create table users (
+	UserID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+	UserName VARCHAR(50) NOT NULL,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL unique,
+	gender VARCHAR(50) DEFAULT 'male' CHECK(gender IN ('female', 'male')),
+	password VARCHAR(50) NOT NULL,
+	phone VARCHAR(11) CHECK(phone like '[0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+	ItemID int
+);
+
+CREATE TABLE user_groups ( 
+    UserGroupID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    email VARCHAR(255) NOT NULL UNIQUE, 
+    groupname VARCHAR(32) NOT NULL
+);
+
+
+
+create table users (
+	UserID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+	UserName VARCHAR(50) NOT NULL,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL unique,
+	gender VARCHAR(50) DEFAULT 'male' CHECK(gender IN ('female', 'male')),
+	password VARCHAR(50) NOT NULL,
+	phone VARCHAR(11) CHECK(phone like '[0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+);
+
+CREATE TABLE user_groups ( 
+    UserGroupID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    email VARCHAR(255) NOT NULL UNIQUE, 
+    groupname VARCHAR(32) NOT NULL
+);
+
+Create Table Genre (
+   GenreID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+   GenreName VARCHAR(255) NOT NULL
+);
+
+Create Table Item(
+    ItemID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    Title VARCHAR(50) NOT NULL,
+    price Double NOT NULL,
+    Description VARCHAR(255),
+    Quality VARCHAR(50),
+    Stock INT,
+    UserID INT REFERENCES Users(UserID),
+    GenreID INT REFERENCES Genre(GenreID)
+);
+
+Create Table Cart (
+    CardID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    ItemID INT REFERENCES Item(ItemID),
+    UserID INT REFERENCES Users(UserID), 
+    Number INT Default 1,
+    Total Double
+);
+
+Create Table Status(
+    StatusID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    StatusName VARCHAR(50) DEFAULT 'Complete' CHECK(StatusName IN ('Complete', 'In progress', 'cancelled'))
+);
+
+Create Table Orders(
+    OrderID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    BuyerID INT REFERENCES Users(UserID),
+    ItemID INT REFERENCES Item(ItemID),
+    Number INT Default 1,
+    Freight double,
+    Date  Date,
+    total double,
+    Status INT REFERENCES Status(StatusID)
+);
+    

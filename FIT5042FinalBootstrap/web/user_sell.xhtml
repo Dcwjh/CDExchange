@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="no-js" lang="zxx"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CD Exchange</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="manifest" href="site.webmanifest"/>
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="assets/css/flaticon.css"/>
+        <link rel="stylesheet" href="assets/css/slicknav.css"/>
+        <link rel="stylesheet" href="assets/css/animate.min.css"/>
+        <link rel="stylesheet" href="assets/css/magnific-popup.css"/>
+        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css"/>
+        <link rel="stylesheet" href="assets/css/themify-icons.css"/>
+        <link rel="stylesheet" href="assets/css/slick.css"/>
+        <link rel="stylesheet" href="assets/css/nice-select.css"/>
+        <link rel="stylesheet" href="assets/css/style.css"/>
+    </h:head>
+
+    <h:body>
+        <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="preloader-circle"></div>
+                    <div class="preloader-img pere-text">
+                        <img src="assets/img/logo/logo.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+         <header>
+            <!-- Header Start -->
+            <div class="header-area">
+                <div class="main-header header-sticky">
+                    <div class="container-fluid">
+                        <div class="menu-wrapper">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="user_index.xhtml"><img src="assets/img/logo/logo.png" alt=""/></a>
+                            </div>
+                            <!-- Main-menu -->
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>                                                
+                                    <ul id="navigation">  
+                                        <li><a href="user_index.xhtml">Home</a></li>
+                                         <li><a href="user_buy.xhtml">Buy</a></li>
+                                         <li><a href="user_sell.xhtml">Sell</a></li>
+                                         <li><a href="user_order.xhtml">Order</a></li>
+                                         <li><a href="user_edit.xhtml">Edit</a></li>        
+                                        <li><a href="user_location.xhtml">location</a></li> 
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Right -->
+                            <div class="header-right">
+                                <ul>
+                                    
+                                    
+                                    <li>
+                                        <div class="nav-search search-switch">
+                                            <span class="flaticon-search"></span>
+                                        </div>
+                                    </li>
+                                    
+                                     <li> <a href="user_detail.xhtml"><span class="flaticon-user"></span></a></li>
+                                   
+                                    
+                                    <li><a href="user_cart.xhtml"><span class="flaticon-shopping-cart"></span></a> </li>
+                                     <h:form >
+                                            Hi! #{loginView.authenticatedUser.username}
+                                            <h:commandButton class="btn btn-success btn_3  " action="#{loginView.logout()}" value="lOGOUT"/> 
+                                    </h:form>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Header End -->
+        </header>
+        <main>
+            <!--? Hero Area Start-->
+            <div class="slider-area ">
+                <div class="single-slider slider-height2 d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="hero-cap text-center">
+                                    <h2>Manage Your CD  Items </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <section class="cart_area section_padding">
+                <div class="container">
+
+                    <h:form>
+
+
+                        <div class="cart_inner">
+                            <div class="table-responsive">
+
+                                <table class="table col-lg-12">
+                                    <thead>
+                                        <tr>
+                                            <th> 
+                                                <h4>title</h4>
+                                            </th>
+                                            <th>
+                                                <h4>price</h4>
+                                            </th>
+                                            <th >
+                                                <h4>quality</h4>
+                                            </th>
+                                            <th >
+                                                <h4> options</h4>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat id="items" value="#{itemController.userOweItems}" var="item" varStatus="status">
+                                            <!--                                            <h:commandLink action="./item/detail">-->
+                                            <tr>
+                                                <td>
+                                                    <div class="media-body ">
+                                                        <h4>
+                                                            <h:outputText value="#{item.title}"/>
+                                                        </h4>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="media-body ">
+                                                        <h4>
+                                                            <h:outputText value="#{item.price}"/>
+                                                        </h4>
+                                                    </div>
+                                                </td>
+                                                <td>
+
+                                                    <div class="media-body ">
+                                                        <h4>
+                                                            <h:outputText value="#{item.quality}"/>
+                                                        </h4>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <div >
+                                                        <h:commandButton value="view" action="/item/detail.xhtml" class="btn btn-success btn_1">
+                                                            <f:param name="itemid" value="#{item.itemid}" />
+                                                        </h:commandButton>
+                                                        &nbsp; &nbsp; 
+                                                        <h:commandButton value="Edit" action="#{editItem.getPareItemId(item.itemid)}" class="btn btn-success btn_3">
+                                                            <f:param name="itemid" value="#{item.itemid}"/>
+                                                        </h:commandButton>
+                                                        &nbsp; &nbsp; 
+                                                        <h:commandButton value="Delete" action="#{itemController.removeItem(item.itemid)}" class="btn btn_1 btn-danger "/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+<!--                                                <f:param name="itemid" value="#{item.itemid}"/>
+                                            </h:commandLink>-->
+                                        </ui:repeat>
+
+                                    </tbody>
+                                </table>
+                                <div class="checkout_btn_inner float-right">
+                                    <!--                                    <a class="btn_1" href="#">Continue Shopping</a>-->
+
+                                    <h:commandButton id="save" value="&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;&nbsp;Add &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; " action="./item/create.xhtml"  class=" btn_1" >
+
+                                    </h:commandButton>
+                                    <a class="btn_3 checkout_btn_1" href="user_buy.xhtml">Continue Shopping</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </h:form>
+                </div>
+
+            </section>
+
+
+        </main>
+        <footer>
+
+            <div class="footer-area ">
+                <div class="container">
+                    <div class="footer-copy-right text-center">
+                        <p>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>  All rights reserved | Jianhai Wang &amp; Shicheng Ai
+                        </p>                  
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="search-model-box">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-btn">+</div>
+                <h:form class="search-model-form">
+                    <h:inputText id="search" value="#{userController.key}" ></h:inputText>
+                    
+                    <h:commandLink id ="submit" action="#{userController.search()}" value="Search" class="btn  btn_1"/> 
+                    
+                </h:form>
+            </div>
+        </div>
+
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+
+        <!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+        <!-- Scrollup, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+        <!-- Jquery Plugins, main Jquery -->	
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+
+    </h:body>
+</html>
+
